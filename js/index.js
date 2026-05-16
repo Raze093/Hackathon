@@ -16,5 +16,5 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   }
 
   setCurrentUser(user);
-  window.location.href = 'main.html';
+  window.location.href = 'app.html#/dashboard';
 });

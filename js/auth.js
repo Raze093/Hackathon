@@ -30,6 +30,6 @@ function requireLogin() {
 
 function redirectIfLoggedIn() {
   if (getCurrentUser()) {
-    window.location.href = 'main.html';
+    window.location.href = 'app.html#/dashboard';
   }
 }

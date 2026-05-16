@@ -48,5 +48,5 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
   users.push(newUser);
   saveUsers(users);
   setCurrentUser(newUser);
-  window.location.href = 'main.html';
+  window.location.href = 'app.html#/dashboard';
 });

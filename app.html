@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queensbay Mall Parking</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="top-line"></div>
+
+    <div class="app-layout">
+      <aside id="appSidebar" class="app-sidebar" aria-label="Main navigation">
+        <div class="sidebar-brand">
+          <div class="logo-text">Queensbay<span class="mall">Mall</span></div>
+          <p class="tagline">It's All Happening Here!</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#/dashboard" class="sidebar-nav-link" data-page="dashboard">Dashboard</a>
+          <a href="#/map" class="sidebar-nav-link" data-page="map">Parking Map</a>
+          <button id="sidebarLogoutBtn" type="button" class="sidebar-logout-btn">Log out</button>
+        </nav>
+      </aside>
+      <div id="sidebarBackdrop" class="sidebar-backdrop" hidden></div>
+
+      <main class="app-main">
+        <div class="app-topbar">
+          <button
+            type="button"
+            id="sidebarToggle"
+            class="sidebar-toggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="appSidebar"
+          >
+            <span class="hamburger-box" aria-hidden="true">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </span>
+          </button>
+        </div>
+        <div id="appView" class="app-view"></div>
+      </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/parking-data.js"></script>
+    <script src="js/parking-utils.js"></script>
+    <script src="js/parking-simulation.js"></script>
+    <script src="js/app-shell.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
