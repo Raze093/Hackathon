@@ -12,630 +12,220 @@
         --occupied: #ff3030;
         --dark-green: #007a3d;
         --border: #111;
-        --muted: #777;
         --page: #ffffff;
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        background: var(--page);
-        color: #111;
-        min-height: 100vh;
-      }
-
-      button,
-      input,
-      select {
-        font-family: inherit;
-      }
-
-      .top-line {
-        height: 4px;
-        background: #7c37ff;
-        width: 100%;
-      }
-
-      .screen {
-        display: none;
-        min-height: calc(100vh - 4px);
-      }
-
-      .screen.active {
-        display: block;
-      }
-
-      .brand {
-        text-align: center;
-        margin-bottom: 24px;
-      }
-
-      .brand .welcome {
-        color: var(--orange);
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: -5px;
-      }
-
-      .logo-text {
-        font-family: Georgia, "Times New Roman", serif;
-        font-style: italic;
-        color: #888;
-        font-size: 52px;
-        line-height: 0.9;
-      }
-
-      .logo-text .mall {
-        color: var(--orange);
-      }
-
-      .tagline {
-        font-size: 10px;
-        letter-spacing: 3px;
-        color: #888;
-        font-style: italic;
-        margin-top: 4px;
-      }
-
-      .screen.login-page {
-        display: none;
-      }
-
-      .screen.login-page.active {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: calc(100vh - 4px);
-        padding: 0 20px;
-      }
-
-      .login-box {
-        width: 330px;
-        text-align: center;
-        margin: 0 auto;
-      }
-
-      .form-control {
-        width: 220px;
-        height: 38px;
-        padding: 0 10px;
-        border: 1.8px solid var(--orange);
-        border-radius: 9px;
-        margin: 5px auto;
-        display: block;
-        outline: none;
-        color: #111;
-      }
-
-      .form-control::placeholder {
-        color: #5eae65;
-      }
-
-      .small-link {
-        font-size: 10px;
-        color: var(--orange);
-        text-decoration: underline;
-        cursor: pointer;
-        border: none;
-        background: none;
-        padding: 0;
-        margin: 14px 0 18px 130px;
-        display: block;
-      }
-
-      .green-btn {
-        background: var(--green);
-        border: 1.8px solid var(--border);
-        border-radius: 8px;
-        height: 37px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-
-      .green-btn:hover {
-        filter: brightness(0.96);
-        transform: translateY(-1px);
-      }
-
-      .login-button {
-        width: 220px;
-      }
-
-      .switch-text {
-        margin-top: 9px;
-        font-size: 10px;
-        color: #777;
-      }
-
-      .switch-text button {
-        color: var(--orange);
-        border: none;
-        background: none;
-        text-decoration: underline;
-        cursor: pointer;
-        padding: 0;
-        font-size: 10px;
-      }
-
-      .screen.signup-page {
-        display: none;
-      }
-
-      .screen.signup-page.active {
-        display: grid;
-        grid-template-columns: 38% 62%;
-        min-height: calc(100vh - 4px);
-      }
-
-      .signup-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 40px;
-        text-align: center;
-      }
-
-      .signup-left .brand {
-        margin-bottom: 28px;
-      }
-
-      .signup-left .logo-text {
-        font-size: 46px;
-      }
-
-      .get-started {
-        color: var(--green);
-        font-size: 48px;
-        font-weight: bold;
-        margin-bottom: 18px;
-      }
-
-      .signup-left .login-button {
-        margin-top: 28px;
-      }
-
-      .signup-right {
-        background: #ffc878;
-        border: 1.5px solid #111;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-
-      .signup-card {
-        width: min(460px, 95%);
-        background: white;
-        border-radius: 10px;
-        padding: 16px;
-      }
-
-      .signup-card h1 {
-        font-family: Arial, sans-serif;
-        font-size: 32px;
-        margin: 0 0 8px;
-      }
-
-      .signup-card p {
-        font-family: Arial, sans-serif;
-        font-size: 20px;
-        margin: 0 0 10px;
-      }
-
-      .signup-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .signup-input,
-      .signup-select,
-      .gender-box {
-        width: 100%;
-        background: #e9e9e9;
-        border: none;
-        height: 48px;
-        padding: 0 16px;
-        font-family: Arial, sans-serif;
-        font-size: 19px;
-        outline: none;
-      }
-
-      .full {
-        grid-column: 1 / -1;
-      }
-
-      .label {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        color: #555;
-        margin: 14px 0 6px 8px;
-      }
-
-      .date-grid,
-      .gender-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-
-      .gender-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: 12px;
-      }
-
-      .signup-submit {
-        width: 220px;
-        display: block;
-        margin: 30px auto 20px;
-        font-size: 18px;
-      }
-
-      .parking-page {
-        padding: 26px 6% 60px;
-      }
-
-      .parking-header {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .parking-header .logo-text {
-        font-size: 45px;
-      }
-
-      .parking-title-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        gap: 16px;
-      }
-
-      .parking-title {
-        color: var(--orange);
-        font-size: 30px;
-        font-weight: bold;
-        margin: 8px 0 18px;
-      }
-
-      .logout-btn {
-        background: white;
-        border: 1px solid #111;
-        border-radius: 6px;
-        padding: 7px 12px;
-        cursor: pointer;
-        margin-bottom: 20px;
-      }
-
-      .controls {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin: 0 auto 16px;
-        max-width: 790px;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-      }
-
-      .controls label {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .controls input {
-        width: 80px;
-        padding: 6px;
-      }
-
-      .floor-list {
-        max-width: 790px;
-        margin: 0 auto;
-      }
-
-      .floor-row {
-        background: var(--green);
-        border: 1.8px solid #111;
-        border-radius: 8px;
-        min-height: 38px;
-        margin-bottom: 22px;
-        overflow: hidden;
-      }
-
-      .floor-summary {
-        min-height: 36px;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        cursor: pointer;
-        padding: 0 12px 0 4px;
-        user-select: none;
-      }
-
-      .floor-name-wrap {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        font-weight: bold;
-        font-size: 14px;
-      }
-
-      .arrow {
-        font-size: 20px;
-        transform: rotate(90deg);
-        display: inline-block;
-        transition: 0.2s;
-      }
-
-      .floor-row.open .arrow {
-        transform: rotate(180deg);
-      }
-
-      .count-label {
-        font-family: Arial, sans-serif;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .available-count {
-        color: var(--dark-green);
-        font-size: 25px;
-        font-weight: bold;
-      }
-
-      .floor-detail {
-        display: none;
-        background: var(--green);
-        border-top: 1.5px solid #111;
-        padding: 12px;
-      }
-
-      .floor-row.open .floor-detail {
-        display: grid;
-        grid-template-columns: minmax(360px, 1fr) 230px;
-        gap: 26px;
-        align-items: start;
-      }
-
-      .map-area {
-        background: white;
-        border: 2px solid #111;
-        height: 120px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .map-area.lower-ground {
-        height: 250px;
-      }
-
-      .top-lots,
-      .bottom-lots {
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        height: 40px;
-      }
-
-      .map-area.lower-ground .top-lots,
-      .map-area.lower-ground .bottom-lots {
-        height: 80px;
-      }
-
-      .top-lots {
-        position: absolute;
-        top: 0;
-        left: 80px;
-        right: 80px;
-      }
-
-      .bottom-lots {
-        position: absolute;
-        left: 80px;
-        right: 80px;
-        bottom: 0;
-        border-top: 2px solid #111;
-        border-bottom: none;
-      }
-
+      * { box-sizing: border-box; }
+      body { margin:0; font-family:Georgia,"Times New Roman",serif; background:var(--page); color:#111; min-height:100vh; }
+      button,input,select { font-family:inherit; }
+      .top-line { height:4px; background:#7c37ff; width:100%; }
+      .screen { display:none; min-height:calc(100vh - 4px); }
+      .screen.active { display:block; }
+
+      /* BRAND */
+      .brand { text-align:center; margin-bottom:24px; }
+      .brand .welcome { color:var(--orange); font-size:22px; font-weight:bold; margin-bottom:-5px; }
+      .logo-text { font-family:Georgia,serif; font-style:italic; color:#888; font-size:52px; line-height:0.9; }
+      .logo-text .mall { color:var(--orange); }
+      .tagline { font-size:10px; letter-spacing:3px; color:#888; font-style:italic; margin-top:4px; }
+
+      /* LOGIN */
+      .screen.login-page { display:none; }
+      .screen.login-page.active { display:flex; justify-content:center; align-items:center; min-height:calc(100vh - 4px); padding:0 20px; }
+      .login-box { width:330px; text-align:center; margin:0 auto; }
+      .form-control { width:220px; height:38px; padding:0 10px; border:1.8px solid var(--orange); border-radius:9px; margin:5px auto; display:block; outline:none; color:#111; }
+      .form-control::placeholder { color:#5eae65; }
+      .small-link { font-size:10px; color:var(--orange); text-decoration:underline; cursor:pointer; border:none; background:none; padding:0; margin:14px 0 18px 130px; display:block; }
+      .green-btn { background:var(--green); border:1.8px solid var(--border); border-radius:8px; height:37px; font-weight:bold; cursor:pointer; transition:0.2s; }
+      .green-btn:hover { filter:brightness(0.96); transform:translateY(-1px); }
+      .login-button { width:220px; }
+      .switch-text { margin-top:9px; font-size:10px; color:#777; }
+      .switch-text button { color:var(--orange); border:none; background:none; text-decoration:underline; cursor:pointer; padding:0; font-size:10px; }
+
+      /* SIGNUP */
+      .screen.signup-page { display:none; }
+      .screen.signup-page.active { display:grid; grid-template-columns:38% 62%; min-height:calc(100vh - 4px); }
+      .signup-left { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; }
+      .signup-left .brand { margin-bottom:28px; }
+      .signup-left .logo-text { font-size:46px; }
+      .get-started { color:var(--green); font-size:48px; font-weight:bold; margin-bottom:18px; }
+      .signup-left .login-button { margin-top:28px; }
+      .signup-right { background:#ffc878; border:1.5px solid #111; display:flex; align-items:center; justify-content:center; padding:20px; }
+      .signup-card { width:min(460px,95%); background:white; border-radius:10px; padding:16px; }
+      .signup-card h1 { font-family:Arial,sans-serif; font-size:32px; margin:0 0 8px; }
+      .signup-card p { font-family:Arial,sans-serif; font-size:20px; margin:0 0 10px; }
+      .signup-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      .signup-input,.signup-select,.gender-box { width:100%; background:#e9e9e9; border:none; height:48px; padding:0 16px; font-family:Arial,sans-serif; font-size:19px; outline:none; }
+      .full { grid-column:1/-1; }
+      .label { font-family:Arial,sans-serif; font-size:16px; color:#555; margin:14px 0 6px 8px; }
+      .date-grid,.gender-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+      .gender-box { display:flex; align-items:center; justify-content:space-between; padding-right:12px; }
+      .signup-submit { width:220px; display:block; margin:30px auto 20px; font-size:18px; }
+
+      /* PARKING PAGE */
+      .parking-page { padding:26px 6% 60px; }
+      .parking-header { text-align:center; margin-bottom:10px; }
+      .parking-header .logo-text { font-size:45px; }
+      .parking-title-row { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; }
+      .parking-title { color:var(--orange); font-size:30px; font-weight:bold; margin:8px 0 18px; }
+      .logout-btn { background:white; border:1px solid #111; border-radius:6px; padding:7px 12px; cursor:pointer; margin-bottom:20px; }
+      .floor-list { max-width:900px; margin:0 auto; }
+
+      /* FLOOR ROW */
+      .floor-row { background:var(--green); border:1.8px solid #111; border-radius:8px; margin-bottom:22px; overflow:hidden; }
+      .floor-summary { min-height:36px; display:grid; grid-template-columns:1fr auto; align-items:center; cursor:pointer; padding:0 12px 0 4px; user-select:none; }
+      .floor-name-wrap { display:flex; align-items:center; gap:32px; font-weight:bold; font-size:14px; }
+      .arrow { font-size:20px; transform:rotate(90deg); display:inline-block; transition:0.2s; }
+      .floor-row.open .arrow { transform:rotate(180deg); }
+      .count-label { font-family:Arial,sans-serif; display:flex; align-items:center; gap:16px; }
+      .available-count { color:var(--dark-green); font-size:25px; font-weight:bold; }
+      .floor-detail { display:none; background:var(--green); border-top:1.5px solid #111; padding:12px; }
+      .floor-row.open .floor-detail { display:grid; grid-template-columns:minmax(400px,1fr) 230px; gap:26px; align-items:start; }
+
+      /* ── MAP BASE ── */
+      .map-area { background:white; border:2px solid #111; height:250px; position:relative; overflow:hidden; }
+
+      /* top and bottom lot rows — stretch full width between slope boxes */
+      .top-lots  { position:absolute; top:0;    display:flex; height:80px; border-bottom:2px solid #111; }
+      .bottom-lots { position:absolute; bottom:0; display:flex; height:80px; border-top:2px solid #111; }
+
+      /* Top row always spans full width — no slopes on top for any floor */
+      .top-lots  { left:0; right:0; }
+      /* Bottom row leaves 80px each side for slope blocks */
+      .bottom-lots { left:80px; right:80px; }
+
+      /* L1/L2: bottom row starts after gate(60px)+slope(80px) = 140px */
+      .map-area.gated-map .bottom-lots { left:175px; }
+      /* GF: bottom row also spans full width (no bottom slopes on GF) */
+      .map-area.gf-map .bottom-lots { left:0; right:0; padding-left:70px; border-top:2px solid #111; }
+
+      /* LOT */
       .lot {
-        height: 40px;
-        border-right: 2px solid #111;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: 0;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        cursor: pointer;
+        flex:1; height:80px; border-right:2px solid #111;
+        display:flex; flex-direction:column;
+        align-items:center; justify-content:flex-end;
+        padding-bottom:6px;
+        font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+        cursor:pointer; min-width:0;
+      }
+      .lot:first-child { border-left:none; }
+      .lot.available { background:var(--available); }
+      .lot.occupied  { background:var(--occupied); }
+      .lot.disabled  { background:white; cursor:not-allowed; font-size:26px; align-items:center; justify-content:center; padding-bottom:0; }
+      .lot.hatch     {
+        background:repeating-linear-gradient(135deg,transparent 0 12px,#f5c518 13px 15px,transparent 16px 28px,#111 29px 31px);
+        cursor:default; flex:1.4; border-right:2px solid #111;
+      }
+      .lot.lift-box  { background:white; border:5px solid #111; font-size:15px; font-weight:bold; align-items:center; justify-content:center; padding-bottom:0; cursor:default; flex:1.4; }
+      .lot.stairs-box{ background:white; border:5px solid #111; font-size:14px; font-weight:bold; align-items:center; justify-content:center; padding-bottom:0; cursor:default; writing-mode:vertical-rl; flex:1.2; }
+
+      /* ENTRANCE divider between disabled spots */
+      .entrance-door {
+        flex-shrink:0; width:36px; background:white;
+        border-left:2px solid #111; border-right:2px solid #111;
+        display:flex; align-items:center; justify-content:center;
+        font-family:Arial,sans-serif; font-size:8px; font-weight:bold;
+        writing-mode:vertical-rl; letter-spacing:1px; height:80px;
       }
 
-      .map-area.lower-ground .lot {
-        height: 80px;
+      /* GF bottom-left hatch box (replaces IN/OUT gate) */
+      .gate-labels {
+        position:absolute; left:0; bottom:0; height:80px; width:70px;
+        border:2px solid #111; border-left:none;
+        background:repeating-linear-gradient(135deg,transparent 0 12px,#f5c518 13px 15px,transparent 16px 28px,#111 29px 31px);
+      }
+      .gate-labels .gate-in,
+      .gate-labels .gate-out {
+        display:none;
+      }
+      
+      .gate-labels-mid .gate-in {
+        display:block;
+        color:#007a3d;
+        font-size:20px;
+        font-weight:bold;
+      }
+      
+      .gate-labels-mid .gate-out {
+        display:block;
+        color:#ff3030;
+        font-size:20px;
+        font-weight:bold;
       }
 
-      .lot:first-child {
-        border-left: none;
+      /* Gate labels for L1/L2 — left side between rows, vertical, no box outlines */
+      .gate-labels-mid {
+        position:absolute; left:0; top:80px; bottom:80px;
+        width:95px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+        font-family:Arial,sans-serif; font-weight:bold; font-size:22px;
+        line-height:1;
+        border-right:2px solid #111;
+        border-top:2px solid #111;
+        border-bottom:2px solid #111;
+        background:white;
+        z-index:5;
+        gap: 18px;
+      }
+      .gate-labels-mid .gate-out {
+        color:#ff3030; writing-mode:vertical-rl; transform:rotate(180deg);
+      }
+      .gate-labels-mid .gate-in {
+        color:#007a3d; writing-mode:vertical-rl; transform:rotate(180deg);
       }
 
-      .lot.available {
-        background: var(--available);
+      /* SLOPE blocks — open chevron SVG style */
+      .slope-left,.slope-right {
+        position:absolute; bottom:0; width:80px; height:80px; border:2px solid #111;
+        background:white;
+        display:flex; flex-direction:column; align-items:center; justify-content:center;
+        font-family:Arial,sans-serif; font-size:10px; font-weight:bold; letter-spacing:1px;
+        gap:2px; overflow:hidden;
       }
+      .slope-left  { left:0; }
+      .slope-right { right:0; }
+      /* L1/L2: left slope shifted right so gate is visible beside it */
+      .slope-left-gated { left:95px; }
 
-      .lot.occupied {
-        background: var(--occupied);
+      /* Top slope blocks (GF only) */
+      .slope-top-left,.slope-top-right {
+        position:absolute; top:0; width:80px; height:80px; border:2px solid #111;
+        background:white;
+        display:flex; flex-direction:column; align-items:center; justify-content:center;
+        font-family:Arial,sans-serif; font-size:10px; font-weight:bold; letter-spacing:1px;
+        gap:2px; overflow:hidden;
       }
+      .slope-top-left  { left:0; }
+      .slope-top-right { right:0; }
 
-      .lot.disabled {
-        background: white;
-        cursor: not-allowed;
-        font-size: 32px;
-        align-items: center;
-        padding-bottom: 0;
-      }
+      .slope-svg { display:block; }
+      .slope-label { font-size:9px; font-weight:bold; letter-spacing:1px; margin-top:1px; }
 
-      .lot.unused {
-        background: white;
-        cursor: default;
-        color: transparent;
-      }
-
-      .slope-left,
-      .slope-right {
-        position: absolute;
-        bottom: 0;
-        width: 80px;
-        height: 40px;
-        border: 2px solid #111;
-        background: repeating-linear-gradient(
-          135deg,
-          transparent 0 14px,
-          #111 15px 17px
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, sans-serif;
-        font-size: 18px;
-        letter-spacing: 3px;
-        writing-mode: vertical-rl;
-      }
-
-      .map-area.lower-ground .slope-left,
-      .map-area.lower-ground .slope-right {
-        height: 80px;
-      }
-
-      .door {
-        position: absolute;
-        top: 0;
-        width: 16px;
-        height: 100%;
-        border-left: 2px solid #111;
-        border-right: 2px solid #111;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, sans-serif;
-        font-size: 10px;
-        font-weight: bold;
-        writing-mode: vertical-rl;
-        padding: 0 2px;
-      }
-
-      .slope-left {
-        left: 0;
-      }
-
-      .slope-right {
-        right: 0;
-      }
-
-      .lift,
-      .stairs {
-        height: 50px;
-        background: white;
-        border: 8px solid #111;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      .stairs {
-        writing-mode: vertical-rl;
-        font-size: 24px;
-      }
-
+      /* TIME PILL */
       .time-pill {
-        position: absolute;
-        left: 32%;
-        bottom: 54px;
-        background: white;
-        border: 2px solid #111;
-        border-radius: 18px;
-        padding: 7px 14px;
-        font-family: Arial, sans-serif;
-        font-size: 10px;
-        text-align: center;
-        min-width: 124px;
+        position:absolute; left:28%; bottom:96px;
+        background:white; border:2px solid #111; border-radius:18px;
+        padding:7px 14px; font-family:Arial,sans-serif; font-size:10px; text-align:center; min-width:124px;
       }
+      .time-value { margin-top:3px; font-size:12px; display:flex; justify-content:center; align-items:center; gap:5px; }
 
-      .time-value {
-        margin-top: 3px;
-        font-size: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-      }
+      /* LEGEND / STATUS */
+      .legend { font-family:Arial,sans-serif; font-size:16px; font-weight:bold; line-height:1.7; padding-top:6px; }
+      .legend span { display:inline-block; width:13px; height:13px; margin-right:4px; vertical-align:middle; }
+      .status-box { font-family:Arial,sans-serif; font-size:13px; color:#333; margin-top:16px; line-height:1.5; }
+      .message { min-height:18px; font-family:Arial,sans-serif; font-size:13px; color:#b00020; margin-top:8px; }
 
-      .legend {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 1.7;
-        padding-top: 6px;
-      }
-
-      .legend span {
-        display: inline-block;
-        width: 13px;
-        height: 13px;
-        margin-right: 4px;
-        vertical-align: middle;
-      }
-
-      .status-box {
-        font-family: Arial, sans-serif;
-        font-size: 13px;
-        color: #333;
-        margin-top: 16px;
-        line-height: 1.5;
-      }
-
-      .message {
-        min-height: 18px;
-        font-family: Arial, sans-serif;
-        font-size: 13px;
-        color: #b00020;
-        margin-top: 8px;
-      }
-
-      @media (max-width: 820px) {
-        .signup-page {
-          grid-template-columns: 1fr;
-        }
-
-        .signup-left {
-          padding: 35px 20px;
-        }
-
-        .floor-row.open .floor-detail {
-          grid-template-columns: 1fr;
-        }
-
-        .parking-title-row {
-          align-items: center;
-        }
+      @media(max-width:820px){
+        .signup-page { grid-template-columns:1fr; }
+        .signup-left { padding:35px 20px; }
+        .floor-row.open .floor-detail { grid-template-columns:1fr; }
+        .parking-title-row { align-items:center; }
       }
     </style>
   </head>
   <body>
     <div class="top-line"></div>
 
+    <!-- LOGIN -->
     <section id="loginScreen" class="screen active login-page">
       <div class="login-box">
         <div class="brand">
@@ -643,45 +233,18 @@
           <div class="logo-text">Queensbay<span class="mall">Mall</span></div>
           <div class="tagline">It's All Happening Here!</div>
         </div>
-
         <form id="loginForm">
-          <input
-            id="loginEmail"
-            class="form-control"
-            type="email"
-            placeholder="Email Address"
-            required
-          />
-          <input
-            id="loginPassword"
-            class="form-control"
-            type="password"
-            placeholder="Password"
-            required
-          />
-          <button
-            type="button"
-            class="small-link"
-            onclick="
-              alert(
-                'For this prototype, registered accounts are stored in localStorage only.',
-              )
-            "
-          >
-            Forgot Password
-          </button>
+          <input id="loginEmail" class="form-control" type="email" placeholder="Email Address" required />
+          <input id="loginPassword" class="form-control" type="password" placeholder="Password" required />
+          <button type="button" class="small-link" onclick="alert('Accounts stored in localStorage for this prototype.')">Forgot Password</button>
           <button class="green-btn login-button" type="submit">Log in</button>
-          <div class="switch-text">
-            Don't have an account?
-            <button type="button" onclick="showScreen('signupScreen')">
-              Sign up
-            </button>
-          </div>
+          <div class="switch-text">Don't have an account? <button type="button" onclick="showScreen('signupScreen')">Sign up</button></div>
           <div id="loginMessage" class="message"></div>
         </form>
       </div>
     </section>
 
+    <!-- SIGNUP -->
     <section id="signupScreen" class="screen signup-page">
       <div class="signup-left">
         <div class="brand">
@@ -691,585 +254,439 @@
         </div>
         <div class="get-started">Get Started</div>
         <div class="switch-text">Already have an account?</div>
-        <button
-          class="green-btn login-button"
-          onclick="showScreen('loginScreen')"
-        >
-          Log in
-        </button>
+        <button class="green-btn login-button" onclick="showScreen('loginScreen')">Log in</button>
       </div>
-
       <div class="signup-right">
         <form id="signupForm" class="signup-card">
           <h1>Sign Up</h1>
           <p>Please fill in this form to create an account</p>
-
           <div class="signup-grid">
-            <input
-              id="firstName"
-              class="signup-input"
-              placeholder="First Name"
-              required
-            />
-            <input
-              id="lastName"
-              class="signup-input"
-              placeholder="Last Name"
-              required
-            />
-            <input
-              id="signupEmail"
-              class="signup-input full"
-              type="email"
-              placeholder="Mobile number or email"
-              required
-            />
-            <input
-              id="signupPassword"
-              class="signup-input full"
-              type="password"
-              placeholder="Password"
-              required
-            />
+            <input id="firstName" class="signup-input" placeholder="First Name" required />
+            <input id="lastName"  class="signup-input" placeholder="Last Name"  required />
+            <input id="signupEmail"    class="signup-input full" type="email"    placeholder="Email" required />
+            <input id="signupPassword" class="signup-input full" type="password" placeholder="Password" required />
           </div>
-
           <div class="label">Birthday</div>
           <div class="date-grid">
             <select id="birthMonth" class="signup-select">
-              <option>Jan</option>
-              <option>Feb</option>
-              <option>Mar</option>
-              <option>Apr</option>
-              <option>May</option>
-              <option>Jun</option>
-              <option>Jul</option>
-              <option>Aug</option>
-              <option>Sep</option>
-              <option>Oct</option>
-              <option>Nov</option>
-              <option selected>Dec</option>
+              <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+              <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+              <option>Sep</option><option>Oct</option><option>Nov</option><option selected>Dec</option>
             </select>
-            <select id="birthDay" class="signup-select"></select>
+            <select id="birthDay"  class="signup-select"></select>
             <select id="birthYear" class="signup-select"></select>
           </div>
-
           <div class="label">Gender</div>
           <div class="gender-grid">
-            <label class="gender-box"
-              >Female <input type="radio" name="gender" value="Female" required
-            /></label>
-            <label class="gender-box"
-              >Male <input type="radio" name="gender" value="Male"
-            /></label>
+            <label class="gender-box">Female <input type="radio" name="gender" value="Female" required /></label>
+            <label class="gender-box">Male   <input type="radio" name="gender" value="Male" /></label>
           </div>
-
           <button class="green-btn signup-submit" type="submit">Sign Up</button>
           <div id="signupMessage" class="message"></div>
         </form>
       </div>
     </section>
 
+    <!-- PARKING -->
     <section id="parkingScreen" class="screen parking-page">
       <div class="parking-header">
         <div class="logo-text">Queensbay<span class="mall">Mall</span></div>
         <div class="tagline">It's All Happening Here!</div>
       </div>
-
       <div class="parking-title-row">
         <div class="parking-title">Parking Availability</div>
         <button class="logout-btn" onclick="logout()">Log out</button>
       </div>
-
       <div id="floorList" class="floor-list"></div>
     </section>
 
     <script>
-      // -------------------------------
-      // BASIC PAGE NAVIGATION
-      // -------------------------------
+      // ── Navigation ─────────────────────────────────────────────────────────
       function showScreen(id) {
-        document
-          .querySelectorAll(".screen")
-          .forEach((screen) => screen.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
       }
+      function logout() { localStorage.removeItem('currentUser'); showScreen('loginScreen'); }
 
-      function logout() {
-        localStorage.removeItem("currentUser");
-        showScreen("loginScreen");
-      }
-
-      // -------------------------------
-      // LOCAL LOGIN AND REGISTRATION
-      // Prototype only: accounts are stored in browser localStorage.
-      // -------------------------------
-      const daySelect = document.getElementById("birthDay");
-      const yearSelect = document.getElementById("birthYear");
-
+      // ── Date dropdowns ─────────────────────────────────────────────────────
+      const daySelect = document.getElementById('birthDay');
+      const yearSelect = document.getElementById('birthYear');
       for (let d = 1; d <= 31; d++) {
-        const opt = document.createElement("option");
-        opt.value = d;
-        opt.textContent = d;
-        if (d === 9) opt.selected = true;
-        daySelect.appendChild(opt);
+        const o = document.createElement('option'); o.value = d; o.textContent = d;
+        if (d === 9) o.selected = true; daySelect.appendChild(o);
+      }
+      const cy = new Date().getFullYear();
+      for (let y = cy; y >= 1950; y--) {
+        const o = document.createElement('option'); o.value = y; o.textContent = y;
+        if (y === 2021) o.selected = true; yearSelect.appendChild(o);
       }
 
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 1950; y--) {
-        const opt = document.createElement("option");
-        opt.value = y;
-        opt.textContent = y;
-        if (y === 2021) opt.selected = true;
-        yearSelect.appendChild(opt);
-      }
+      // ── Auth ───────────────────────────────────────────────────────────────
+      function getUsers() { return JSON.parse(localStorage.getItem('users') || '[]'); }
+      function saveUsers(u) { localStorage.setItem('users', JSON.stringify(u)); }
 
-      function getUsers() {
-        return JSON.parse(localStorage.getItem("users") || "[]");
-      }
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const users = getUsers();
+        const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+        const password = document.getElementById('signupPassword').value;
+        if (users.some(u => u.email === email)) {
+          document.getElementById('signupMessage').textContent = 'This email is already registered.'; return;
+        }
+        const g = document.querySelector('input[name="gender"]:checked');
+        const newUser = {
+          firstName: document.getElementById('firstName').value.trim(),
+          lastName:  document.getElementById('lastName').value.trim(),
+          email, password,
+          birthday: `${document.getElementById('birthDay').value} ${document.getElementById('birthMonth').value} ${document.getElementById('birthYear').value}`,
+          gender: g ? g.value : ''
+        };
+        users.push(newUser); saveUsers(users);
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        showScreen('parkingScreen'); renderFloors();
+      });
 
-      function saveUsers(users) {
-        localStorage.setItem("users", JSON.stringify(users));
-      }
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+        const password = document.getElementById('loginPassword').value;
+        const user = getUsers().find(u => u.email === email && u.password === password);
+        if (!user) { document.getElementById('loginMessage').textContent = 'Invalid email or password.'; return; }
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        showScreen('parkingScreen'); renderFloors();
+      });
 
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const users = getUsers();
-          const email = document
-            .getElementById("signupEmail")
-            .value.trim()
-            .toLowerCase();
-          const password = document.getElementById("signupPassword").value;
-
-          if (users.some((user) => user.email === email)) {
-            document.getElementById("signupMessage").textContent =
-              "This email is already registered.";
-            return;
-          }
-
-          const selectedGender = document.querySelector(
-            'input[name="gender"]:checked',
-          );
-
-          const newUser = {
-            firstName: document.getElementById("firstName").value.trim(),
-            lastName: document.getElementById("lastName").value.trim(),
-            email,
-            password,
-            birthday: `${document.getElementById("birthDay").value} ${document.getElementById("birthMonth").value} ${document.getElementById("birthYear").value}`,
-            gender: selectedGender ? selectedGender.value : "",
-          };
-
-          users.push(newUser);
-          saveUsers(users);
-          localStorage.setItem("currentUser", JSON.stringify(newUser));
-          showScreen("parkingScreen");
-          renderFloors();
-        });
-
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const email = document
-            .getElementById("loginEmail")
-            .value.trim()
-            .toLowerCase();
-          const password = document.getElementById("loginPassword").value;
-          const user = getUsers().find(
-            (u) => u.email === email && u.password === password,
-          );
-
-          if (!user) {
-            document.getElementById("loginMessage").textContent =
-              "Invalid email or password.";
-            return;
-          }
-
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          showScreen("parkingScreen");
-          renderFloors();
-        });
-
-      // -------------------------------
-      // PARKING DATA
-      // status options:
-      // available = green and counted
-      // occupied  = red and not counted
-      // disabled  = fixed disabled lot, not counted and not clickable
-      // unused    = blank map block, not counted and not clickable
-      // -------------------------------
+      // ── Floor data ─────────────────────────────────────────────────────────
       const defaultFloors = [
         {
-          id: "lg",
-          name: "Lower Ground Floor",
-          open: true,
-          special: "ground",
-          lots: [
-            { id: "LG-A", status: "occupied" },
-            { id: "LG-B", status: "available" },
-            { id: "LG-C", status: "occupied" },
-            { id: "LG-D", status: "available" },
-            { id: "D-LG-1", status: "disabled" },
-            { id: "D-LG-2", status: "disabled" },
-            { id: "LG-E", status: "occupied" },
-            { id: "LG-F", status: "occupied" },
-            { id: "LG-G", status: "available" },
-            { id: "LG-H", status: "occupied" },
-            { id: "LG-I", status: "available" },
-            { id: "LG-J", status: "occupied" },
-            { id: "LG-K", status: "occupied" },
-            { id: "LG-L", status: "available" },
-            { id: "LG-M", status: "occupied" },
+          id:'lg', name:'Lower Ground Floor', open:true,
+          topLots:[
+            {id:'LG-A',status:'occupied'},
+            {id:'LG-B',status:'available'},
+            {id:'LG-C',status:'occupied'},
+            {id:'LG-D',status:'available'},
+            {id:'D-LG-1',status:'disabled'},
+            {id:'ENTRANCE',status:'entrance'},
+            {id:'D-LG-2',status:'disabled'},
+            {id:'LG-E',status:'occupied'},
+            {id:'LG-F',status:'occupied'},
+          ],
+          bottomLots:[
+            {id:'LG-M',status:'occupied'},
+            {id:'LG-L',status:'available'},
+            {id:'LG-K',status:'occupied'},
+            {id:'LG-J',status:'available'},
+            {id:'LG-I',status:'occupied'},
+            {id:'LG-H',status:'occupied'},
+            {id:'LG-G',status:'available'},
           ],
         },
         {
-          id: "g",
-          name: "Ground Floor",
-          open: false,
-          special: "ground",
-          lots: [
-            { id: "G-A", status: "occupied" },
-            { id: "G-B", status: "occupied" },
-            { id: "G-C", status: "disabled" },
-            { id: "G-D", status: "available" },
-            { id: "G-E", status: "occupied" },
-            { id: "G-F", status: "occupied" },
-            { id: "G-G", status: "available" },
-            { id: "G-H", status: "occupied" },
+          id:'gf', name:'Ground Floor', open:false,
+          // GF: top slopes are absolute boxes, top-lots spans full width
+          // Bottom has no slopes, has IN/OUT label on left
+          topLots:[
+            {id:'GF-A',status:'occupied'},
+            {id:'GF-B',status:'available'},
+            {id:'D-GF-1',status:'disabled'},
+            {id:'ENTRANCE',status:'entrance'},
+            {id:'D-GF-2',status:'disabled'},
+            {id:'GF-C',status:'occupied'},
+            {id:'GF-D',status:'available'},
+          ],
+          bottomLots:[
+            {id:'GF-K',status:'occupied'},
+            {id:'GF-J',status:'available'},
+            {id:'GF-I',status:'occupied'},
+            {id:'GF-H',status:'available'},
+            {id:'GF-G',status:'occupied'},
+            {id:'GF-F',status:'occupied'},
+            {id:'GF-E',status:'available'},
           ],
         },
         {
-          id: "l1",
-          name: "First Floor",
-          open: false,
-          special: "normal",
-          lots: [
-            { id: "L1-A", status: "available" },
-            { id: "L1-B", status: "available" },
-            { id: "D-L1-1", status: "disabled" },
-            { id: "D-L1-2", status: "disabled" },
-            { id: "L1-C", status: "occupied" },
-            { id: "L1-D", status: "occupied" },
-            { id: "L1-E", status: "available" },
-            { id: "L1-F", status: "available" },
-            { id: "L1-G", status: "occupied" },
-            { id: "L1-H", status: "available" },
-            { id: "L1-I", status: "occupied" },
-            { id: "L1-J", status: "available" },
-            { id: "L1-K", status: "occupied" },
+          id:'l1', name:'First Floor', open:false,
+          topLots:[
+            {id:'HATCH',status:'hatch'},
+            {id:'L1-A',status:'available'},
+            {id:'L1-B',status:'occupied'},
+            {id:'D-L1-1',status:'disabled'},
+            {id:'ENTRANCE',status:'entrance'},
+            {id:'D-L1-2',status:'disabled'},
+            {id:'L1-C',status:'available'},
+            {id:'L1-D',status:'occupied'},
+          ],
+          bottomLots:[
+            {id:'L1-E',status:'available'},
+            {id:'L1-F',status:'available'},
+            {id:'L1-G',status:'occupied'},
+            {id:'L1-H',status:'available'},
+            {id:'L1-I',status:'occupied'},
+            {id:'L1-J',status:'available'},
+            {id:'L1-K',status:'occupied'},
           ],
         },
         {
-          id: "l2",
-          name: "Second Floor",
-          open: false,
-          special: "stairs",
-          lots: [
-            { id: "L2-A", status: "available" },
-            { id: "L2-B", status: "occupied" },
-            { id: "L2-C", status: "available" },
-            { id: "L2-D", status: "occupied" },
-            { id: "STAIRS", status: "unused" },
-            { id: "L2-E", status: "available" },
-            { id: "L2-F", status: "occupied" },
-            { id: "L2-G", status: "available" },
-            { id: "L2-H", status: "occupied" },
-            { id: "L2-I", status: "occupied" },
-            { id: "L2-J", status: "available" },
-            { id: "L2-K", status: "occupied" },
-            { id: "L2-L", status: "available" },
-            { id: "L2-M", status: "occupied" },
-            { id: "L2-N", status: "occupied" },
+          id:'l2', name:'Second Floor', open:false,
+          topLots:[
+            {id:'HATCH',status:'hatch'},
+            {id:'L2-A',status:'available'},
+            {id:'L2-B',status:'occupied'},
+            {id:'L2-C',status:'available'},
+            {id:'L2-D',status:'occupied'},
+            {id:'STAIRS',status:'stairs-box'},
+            {id:'L2-E',status:'available'},
+            {id:'L2-F',status:'occupied'},
+            {id:'L2-G',status:'available'},
+          ],
+          bottomLots:[
+            {id:'L2-H',status:'occupied'},
+            {id:'L2-I',status:'occupied'},
+            {id:'L2-J',status:'available'},
+            {id:'L2-K',status:'occupied'},
+            {id:'L2-L',status:'available'},
+            {id:'L2-M',status:'occupied'},
+            {id:'L2-N',status:'occupied'},
           ],
         },
         {
-          id: "l3",
-          name: "Third Floor",
-          open: false,
-          special: "lift",
-          lots: [
-            { id: "L3-A", status: "available" },
-            { id: "L3-B", status: "occupied" },
-            { id: "L3-C", status: "available" },
-            { id: "L3-D", status: "occupied" },
-            { id: "L3-E", status: "available" },
-            { id: "LIFT", status: "unused" },
-            { id: "L3-F", status: "occupied" },
-            { id: "L3-G", status: "available" },
-            { id: "L3-H", status: "available" },
-            { id: "L3-I", status: "occupied" },
-            { id: "L3-J", status: "available" },
-            { id: "L3-K", status: "occupied" },
-            { id: "L3-L", status: "occupied" },
-            { id: "L3-M", status: "available" },
-            { id: "L3-N", status: "available" },
-            { id: "L3-O", status: "occupied" },
+          id:'l3', name:'Third Floor', open:false,
+          topLots:[
+            {id:'L3-A',status:'available'},
+            {id:'L3-B',status:'occupied'},
+            {id:'L3-C',status:'available'},
+            {id:'L3-D',status:'occupied'},
+            {id:'L3-E',status:'available'},
+            {id:'LIFT', status:'lift-box'},
+            {id:'L3-F',status:'occupied'},
+            {id:'L3-G',status:'available'},
+            {id:'L3-H',status:'occupied'},
+          ],
+          bottomLots:[
+            {id:'L3-I', status:'available'},
+            {id:'L3-J', status:'occupied'},
+            {id:'L3-K', status:'available'},
+            {id:'L3-L', status:'occupied'},
+            {id:'L3-M', status:'available'},
+            {id:'L3-N', status:'available'},
+            {id:'L3-O', status:'occupied'},
           ],
         },
       ];
 
       let floors = loadLots();
-
       function loadLots() {
-        const saved = localStorage.getItem("parkingFloors");
-        return saved ? JSON.parse(saved) : structuredClone(defaultFloors);
+        const saved = localStorage.getItem('parkingFloors');
+        return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultFloors));
       }
+      function saveLots() { localStorage.setItem('parkingFloors', JSON.stringify(floors)); }
 
-      function saveLots() {
-        localStorage.setItem("parkingFloors", JSON.stringify(floors));
-      }
+      function allLots(floor) { return [...(floor.topLots||[]),...(floor.bottomLots||[])]; }
+      function countAvailableLots(floor) { return allLots(floor).filter(l=>l.status==='available').length; }
+      function countOccupiedLots(floor)  { return allLots(floor).filter(l=>l.status==='occupied').length; }
+      function countTotalAvailable() { return floors.reduce((s,f)=>s+countAvailableLots(f),0); }
+      function countTotalOccupied()  { return floors.reduce((s,f)=>s+countOccupiedLots(f),0); }
 
-      function resetLots() {
-        floors = structuredClone(defaultFloors);
-        saveLots();
-        renderFloors();
-      }
-
-      function countAvailableLots(floor) {
-        return floor.lots.filter((lot) => lot.status === "available").length;
-      }
-
-      function countOccupiedLots(floor) {
-        return floor.lots.filter((lot) => lot.status === "occupied").length;
-      }
-
-      function countTotalAvailable() {
-        return floors.reduce(
-          (sum, floor) => sum + countAvailableLots(floor),
-          0,
-        );
-      }
-
-      function countTotalOccupied() {
-        return floors.reduce((sum, floor) => sum + countOccupiedLots(floor), 0);
-      }
-
+      // Estimated time uses fixed defaults (controls removed)
       function estimateAvailableTimeMinutes() {
-        const avgDuration = Math.max(
-          1,
-          Number(document.getElementById("avgDuration")?.value) || 120,
-        );
-        const enteringCars = Math.max(
-          0,
-          Number(document.getElementById("enteringCars")?.value) || 0,
-        );
-        const occupiedLots = Math.max(1, countTotalOccupied());
-
-        // Simple prototype model:
-        // Average parking duration is converted into a turnover rate.
-        // More occupied lots means at least one spot is expected to free up sooner.
-        // More entering cars increases competition, so displayed availability time increases.
-        const baseNextFreeTime = avgDuration / occupiedLots;
-        const cameraTrafficFactor = 1 + enteringCars * 0.12;
-        const availableLotsBuffer = Math.max(
-          0.55,
-          1 - countTotalAvailable() * 0.015,
-        );
-
-        return Math.max(
-          1,
-          Math.round(
-            baseNextFreeTime * cameraTrafficFactor * availableLotsBuffer,
-          ),
-        );
-      }
-
-      async function loadAverageDurationOnline() {
-        // Replace this URL with your real API/backend later.
-        // Example expected JSON: { "averageDurationMinutes": 120 }
-        const fallbackMinutes = 120;
-        const possibleUrl =
-          "https://api.allorigins.win/raw?url=https://raw.githubusercontent.com/example/parking-duration/main/queensbay.json";
-
-        try {
-          const response = await fetch(possibleUrl, { cache: "no-store" });
-          if (!response.ok) throw new Error("Online source unavailable");
-          const data = await response.json();
-          const minutes = Number(data.averageDurationMinutes);
-          if (!Number.isFinite(minutes) || minutes <= 0)
-            throw new Error("Invalid duration value");
-          const avgDurationInput = document.getElementById("avgDuration");
-          if (avgDurationInput) avgDurationInput.value = Math.round(minutes);
-          alert("Average parking duration updated from online data.");
-        } catch (error) {
-          const avgDurationInput = document.getElementById("avgDuration");
-          if (avgDurationInput) avgDurationInput.value = fallbackMinutes;
-          alert(
-            "Online duration source is not connected yet, so the prototype is using a 120-minute fallback.",
-          );
-        }
-
-        renderFloors();
+        const avgDuration  = 120;
+        const enteringCars = 0;
+        const occupied = Math.max(1, countTotalOccupied());
+        const base  = avgDuration / occupied;
+        const buf   = Math.max(0.55, 1 - countTotalAvailable() * 0.015);
+        return Math.max(1, Math.round(base * buf));
       }
 
       function toggleFloor(floorId) {
-        floors = floors.map((floor) => ({
-          ...floor,
-          open: floor.id === floorId ? !floor.open : floor.open,
-        }));
-        saveLots();
-        renderFloors();
+        floors = floors.map(f=>({...f, open: f.id===floorId ? !f.open : f.open}));
+        saveLots(); renderFloors();
       }
-
       function toggleLot(floorId, lotId) {
-        const floor = floors.find((f) => f.id === floorId);
-        const lot = floor.lots.find((l) => l.id === lotId);
-
-        if (!lot || lot.status === "disabled" || lot.status === "unused")
-          return;
-
-        lot.status = lot.status === "available" ? "occupied" : "available";
-        saveLots();
-        renderFloors();
+        const floor = floors.find(f=>f.id===floorId);
+        const SKIP = ['disabled','entrance','hatch','lift-box','stairs-box'];
+        const lot = allLots(floor).find(l=>l.id===lotId);
+        if (!lot || SKIP.includes(lot.status)) return;
+        lot.status = lot.status==='available' ? 'occupied' : 'available';
+        saveLots(); renderFloors();
       }
 
-      function createLot(lot, floorId) {
-        const div = document.createElement("div");
-        div.className = `lot ${lot.status}`;
-
-        if (lot.status === "disabled") {
-          div.innerHTML = "♿";
-          div.title =
-            "Disabled parking is not included in the normal availability counter";
-        } else if (lot.status === "unused") {
-          if (lot.id === "LIFT") {
-            div.className = "lift";
-            div.textContent = "LIFT";
-          } else if (lot.id === "STAIRS") {
-            div.className = "stairs";
-            div.textContent = "STAIRS";
-          } else {
+      // ── Build single lot element ───────────────────────────────────────────
+      function createLotEl(lot, floorId) {
+        const div = document.createElement('div');
+        switch(lot.status) {
+          case 'entrance':
+            div.className = 'entrance-door';
+            div.textContent = 'ENTRANCE';
+            return div;
+          case 'hatch':
+            div.className = 'lot hatch';
+            return div;
+          case 'lift-box':
+            div.className = 'lot lift-box';
+            div.textContent = 'LIFT';
+            return div;
+          case 'stairs-box':
+            div.className = 'lot stairs-box';
+            div.textContent = 'STAIRS';
+            return div;
+          case 'disabled':
+            div.className = 'lot disabled';
+            div.innerHTML = '♿';
+            return div;
+          default:
+            div.className = `lot ${lot.status}`;
             div.textContent = lot.id;
-          }
-        } else {
-          div.textContent = lot.id;
-          div.title = "Click to toggle occupied / available";
-          div.addEventListener("click", () => toggleLot(floorId, lot.id));
+            div.title = 'Click to toggle';
+            div.addEventListener('click', ()=>toggleLot(floorId, lot.id));
+            return div;
         }
-
-        return div;
       }
 
-      function insertDoorBetweenDisabled(rowElement, lots) {
-        const doorIndex = lots.findIndex(
-          (lot, index) =>
-            lot.status === "disabled" && lots[index + 1]?.status === "disabled",
-        );
-        if (doorIndex === -1) return;
-
-        const door = document.createElement("div");
-        door.className = "door";
-        door.textContent = "ENTRANCE";
-        door.style.left = `calc(${(doorIndex + 1) * 12.5}% - 8px)`;
-        rowElement.appendChild(door);
+      // ── Helper: build a slope element with open SVG chevrons ─────────────
+      function makeSlopeEl(className) {
+        const el = document.createElement('div');
+        el.className = className;
+        el.innerHTML = `
+          <svg class="slope-svg" width="54" height="46" viewBox="0 0 54 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="4,22 27,4 50,22" stroke="#111" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            <polyline points="4,40 27,22 50,40" stroke="#111" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="slope-label">SLOPE</div>`;
+        return el;
       }
 
+      // ── Helper: build IN/OUT gate element ────────────────────────────────
+      function makeGateEl(cls) {
+        const gate = document.createElement('div');
+        gate.className = cls;
+        gate.innerHTML = '<div class="gate-out">OUT</div><div class="gate-in">IN</div>';
+        return gate;
+      }
+
+      // ── Build map for a floor ─────────────────────────────────────────────
       function createMap(floor) {
-        const map = document.createElement("div");
-        map.className = "map-area";
+        const map = document.createElement('div');
+        map.className = 'map-area';
 
-        const topLots = document.createElement("div");
-        topLots.className = "top-lots";
+        const topRow = document.createElement('div');
+        topRow.className = 'top-lots';
+        const botRow = document.createElement('div');
+        botRow.className = 'bottom-lots';
 
-        const bottomLots = document.createElement("div");
-        bottomLots.className = "bottom-lots";
+        // ── GF: top slopes as absolute boxes, full-width rows, IN/OUT label bottom-left, no bottom slopes ──
+        if (floor.id === 'gf') {
+          map.classList.add('gf-map');
 
-        const splitIndex = Math.ceil(floor.lots.length / 2);
-        const top = floor.lots.slice(0, splitIndex);
-        const bottom = floor.lots.slice(splitIndex);
+          // Top slope left & right (absolute) with chevrons
+          map.appendChild(makeSlopeEl('slope-top-left'));
+          map.appendChild(makeSlopeEl('slope-top-right'));
 
-        top.forEach((lot) => topLots.appendChild(createLot(lot, floor.id)));
-        bottom.forEach((lot) =>
-          bottomLots.appendChild(createLot(lot, floor.id)),
-        );
+          // Top lots: shrink to avoid overlapping top slopes
+          topRow.style.left = '80px';
+          topRow.style.right = '80px';
 
-        if (floor.id === "lg") {
-          insertDoorBetweenDisabled(topLots, top);
-          insertDoorBetweenDisabled(bottomLots, bottom);
-          map.classList.add("lower-ground");
+          floor.topLots.forEach(lot => topRow.appendChild(createLotEl(lot, floor.id)));
+
+          // Bottom row: full width, CSS .gf-map .bottom-lots handles left padding for gate
+          // IN/OUT gate on bottom-left
+          const gate = makeGateEl('gate-labels');
+          map.appendChild(gate);
+
+          floor.bottomLots.forEach(lot => botRow.appendChild(createLotEl(lot, floor.id)));
+
+          map.appendChild(topRow);
+          map.appendChild(botRow);
+
+          const pill = document.createElement('div');
+          pill.className = 'time-pill';
+          pill.innerHTML = `<div>Estimated Available Time</div><div class="time-value">🕘 <strong>${estimateAvailableTimeMinutes()} min</strong></div>`;
+          map.appendChild(pill);
+          return map;
         }
 
-        map.appendChild(topLots);
-        map.appendChild(bottomLots);
+        // ── L1 / L2: slopes on bottom-left and bottom-right, IN/OUT gate mid-left ──
+        if (floor.id === 'l1' || floor.id === 'l2') {
+          map.classList.add('gated-map');
+          floor.topLots.forEach(lot => topRow.appendChild(createLotEl(lot, floor.id)));
+          floor.bottomLots.forEach(lot => botRow.appendChild(createLotEl(lot, floor.id)));
 
-        const slopeLeft = document.createElement("div");
-        slopeLeft.className = "slope-left";
-        slopeLeft.textContent = "SLOPE";
-        map.appendChild(slopeLeft);
+          map.appendChild(topRow);
+          map.appendChild(botRow);
 
-        const slopeRight = document.createElement("div");
-        slopeRight.className = "slope-right";
-        slopeRight.textContent = "SLOPE";
-        map.appendChild(slopeRight);
+          // Gate goes first (behind slope visually but at left:0)
+          map.appendChild(makeGateEl('gate-labels-mid'));
 
-        const timePill = document.createElement("div");
-        timePill.className = "time-pill";
-        timePill.innerHTML = `
-        <div>Estimated Available Time</div>
-        <div class="time-value">🕘 <strong>${estimateAvailableTimeMinutes()} min</strong></div>
-      `;
-        map.appendChild(timePill);
+          // Left slope shifted right by gate width so gate is fully visible
+          map.appendChild(makeSlopeEl('slope-left slope-left-gated'));
+          map.appendChild(makeSlopeEl('slope-right'));
+
+          const pill = document.createElement('div');
+          pill.className = 'time-pill';
+          pill.innerHTML = `<div>Estimated Available Time</div><div class="time-value">🕘 <strong>${estimateAvailableTimeMinutes()} min</strong></div>`;
+          map.appendChild(pill);
+          return map;
+        }
+
+        // ── ALL OTHER FLOORS: slopes on bottom-left and bottom-right ──
+        floor.topLots.forEach(lot => topRow.appendChild(createLotEl(lot, floor.id)));
+        floor.bottomLots.forEach(lot => botRow.appendChild(createLotEl(lot, floor.id)));
+
+        map.appendChild(topRow);
+        map.appendChild(botRow);
+
+        map.appendChild(makeSlopeEl('slope-left'));
+        map.appendChild(makeSlopeEl('slope-right'));
+
+        const pill = document.createElement('div');
+        pill.className = 'time-pill';
+        pill.innerHTML = `<div>Estimated Available Time</div><div class="time-value">🕘 <strong>${estimateAvailableTimeMinutes()} min</strong></div>`;
+        map.appendChild(pill);
 
         return map;
       }
 
+      // ── Render ────────────────────────────────────────────────────────────
       function renderFloors() {
-        const floorList = document.getElementById("floorList");
-        floorList.innerHTML = "";
+        const list = document.getElementById('floorList');
+        list.innerHTML = '';
+        floors.forEach(floor => {
+          const row = document.createElement('div');
+          row.className = `floor-row ${floor.open ? 'open' : ''}`;
 
-        floors.forEach((floor) => {
-          const row = document.createElement("div");
-          row.className = `floor-row ${floor.open ? "open" : ""}`;
-
-          const summary = document.createElement("div");
-          summary.className = "floor-summary";
-          summary.addEventListener("click", () => toggleFloor(floor.id));
+          const summary = document.createElement('div');
+          summary.className = 'floor-summary';
+          summary.addEventListener('click', ()=>toggleFloor(floor.id));
           summary.innerHTML = `
-          <div class="floor-name-wrap">
-            <span>${floor.name}</span>
-            <span class="arrow">⌄</span>
-          </div>
-          <div class="count-label">
-            <span>Availability:</span>
-            <span class="available-count">${countAvailableLots(floor)}</span>
-          </div>
-        `;
+            <div class="floor-name-wrap">
+              <span>${floor.name}</span>
+              <span class="arrow">⌄</span>
+            </div>
+            <div class="count-label">
+              <span>Availability:</span>
+              <span class="available-count">${countAvailableLots(floor)}</span>
+            </div>`;
 
-          const detail = document.createElement("div");
-          detail.className = "floor-detail";
+          const detail = document.createElement('div');
+          detail.className = 'floor-detail';
 
           const map = createMap(floor);
-          const sidePanel = document.createElement("div");
-          sidePanel.innerHTML = `
-          <div class="legend">
-            <div><span style="background:var(--occupied)"></span>Occupied</div>
-            <div><span style="background:var(--dark-green)"></span>Available</div>
-          </div>
-          <div class="status-box">
-            <strong>Floor available lots:</strong> ${countAvailableLots(floor)}<br />
-            <strong>Total available lots:</strong> ${countTotalAvailable()}<br />
-            <strong>Camera entering count:</strong> ${Number(document.getElementById("enteringCars")?.value) || 0}<br />
-            <strong>Estimated next availability:</strong> ${estimateAvailableTimeMinutes()} min
-          </div>
-        `;
+
+          const side = document.createElement('div');
+          side.innerHTML = `
+            <div class="legend">
+              <div><span style="background:var(--occupied)"></span>Occupied</div>
+              <div><span style="background:var(--available)"></span>Available</div>
+            </div>
+            <div class="status-box">
+            </div>`;
 
           detail.appendChild(map);
-          detail.appendChild(sidePanel);
-
+          detail.appendChild(side);
           row.appendChild(summary);
           row.appendChild(detail);
-          floorList.appendChild(row);
+          list.appendChild(row);
         });
       }
-
-      const enteringCarsInput = document.getElementById("enteringCars");
-      const avgDurationInput = document.getElementById("avgDuration");
-      if (enteringCarsInput) enteringCarsInput.addEventListener("input", renderFloors);
-      if (avgDurationInput) avgDurationInput.addEventListener("input", renderFloors);
 
       renderFloors();
     </script>
