@@ -410,37 +410,57 @@
       .map-area {
         background: white;
         border: 2px solid #111;
-        min-height: 210px;
+        height: 120px;
         position: relative;
         overflow: hidden;
+      }
+
+      .map-area.lower-ground {
+        height: 250px;
       }
 
       .top-lots,
       .bottom-lots {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
-        border-bottom: 2px solid #111;
+        height: 40px;
+      }
+
+      .map-area.lower-ground .top-lots,
+      .map-area.lower-ground .bottom-lots {
+        height: 80px;
+      }
+
+      .top-lots {
+        position: absolute;
+        top: 0;
+        left: 80px;
+        right: 80px;
       }
 
       .bottom-lots {
         position: absolute;
-        left: 9%;
-        right: 14%;
+        left: 80px;
+        right: 80px;
         bottom: 0;
         border-top: 2px solid #111;
         border-bottom: none;
       }
 
       .lot {
-        height: 50px;
+        height: 40px;
         border-right: 2px solid #111;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: center;
-        padding-bottom: 8px;
+        padding-bottom: 0;
         font-family: Arial, sans-serif;
-        font-size: 15px;
+        font-size: 14px;
         cursor: pointer;
+      }
+
+      .map-area.lower-ground .lot {
+        height: 80px;
       }
 
       .lot:first-child {
@@ -474,7 +494,7 @@
         position: absolute;
         bottom: 0;
         width: 80px;
-        height: 70px;
+        height: 40px;
         border: 2px solid #111;
         background: repeating-linear-gradient(
           135deg,
@@ -488,6 +508,29 @@
         font-size: 18px;
         letter-spacing: 3px;
         writing-mode: vertical-rl;
+      }
+
+      .map-area.lower-ground .slope-left,
+      .map-area.lower-ground .slope-right {
+        height: 80px;
+      }
+
+      .door {
+        position: absolute;
+        top: 0;
+        width: 16px;
+        height: 100%;
+        border-left: 2px solid #111;
+        border-right: 2px solid #111;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        writing-mode: vertical-rl;
+        padding: 0 2px;
       }
 
       .slope-left {
@@ -737,31 +780,6 @@
         <button class="logout-btn" onclick="logout()">Log out</button>
       </div>
 
-      <div class="controls">
-        <label
-          >Cars entering now:
-          <input id="enteringCars" type="number" min="0" value="0"
-        /></label>
-        <label
-          >Average parking duration, min:
-          <input id="avgDuration" type="number" min="1" value="120"
-        /></label>
-        <button
-          class="green-btn"
-          style="height: 32px; padding: 0 12px"
-          onclick="loadAverageDurationOnline()"
-        >
-          Refresh online duration
-        </button>
-        <button
-          class="green-btn"
-          style="height: 32px; padding: 0 12px"
-          onclick="resetLots()"
-        >
-          Reset lots
-        </button>
-      </div>
-
       <div id="floorList" class="floor-list"></div>
     </section>
 
@@ -899,13 +917,13 @@
             { id: "D-LG-2", status: "disabled" },
             { id: "LG-E", status: "occupied" },
             { id: "LG-F", status: "occupied" },
-            { id: "LG-M", status: "occupied" },
-            { id: "LG-L", status: "available" },
-            { id: "LG-K", status: "occupied" },
-            { id: "GF-J", status: "occupied" },
-            { id: "GF-I", status: "available" },
-            { id: "LG-H", status: "occupied" },
             { id: "LG-G", status: "available" },
+            { id: "LG-H", status: "occupied" },
+            { id: "LG-I", status: "available" },
+            { id: "LG-J", status: "occupied" },
+            { id: "LG-K", status: "occupied" },
+            { id: "LG-L", status: "available" },
+            { id: "LG-M", status: "occupied" },
           ],
         },
         {
@@ -1033,11 +1051,11 @@
       function estimateAvailableTimeMinutes() {
         const avgDuration = Math.max(
           1,
-          Number(document.getElementById("avgDuration").value) || 120,
+          Number(document.getElementById("avgDuration")?.value) || 120,
         );
         const enteringCars = Math.max(
           0,
-          Number(document.getElementById("enteringCars").value) || 0,
+          Number(document.getElementById("enteringCars")?.value) || 0,
         );
         const occupiedLots = Math.max(1, countTotalOccupied());
 
@@ -1074,10 +1092,12 @@
           const minutes = Number(data.averageDurationMinutes);
           if (!Number.isFinite(minutes) || minutes <= 0)
             throw new Error("Invalid duration value");
-          document.getElementById("avgDuration").value = Math.round(minutes);
+          const avgDurationInput = document.getElementById("avgDuration");
+          if (avgDurationInput) avgDurationInput.value = Math.round(minutes);
           alert("Average parking duration updated from online data.");
         } catch (error) {
-          document.getElementById("avgDuration").value = fallbackMinutes;
+          const avgDurationInput = document.getElementById("avgDuration");
+          if (avgDurationInput) avgDurationInput.value = fallbackMinutes;
           alert(
             "Online duration source is not connected yet, so the prototype is using a 120-minute fallback.",
           );
@@ -1134,6 +1154,20 @@
         return div;
       }
 
+      function insertDoorBetweenDisabled(rowElement, lots) {
+        const doorIndex = lots.findIndex(
+          (lot, index) =>
+            lot.status === "disabled" && lots[index + 1]?.status === "disabled",
+        );
+        if (doorIndex === -1) return;
+
+        const door = document.createElement("div");
+        door.className = "door";
+        door.textContent = "ENTRANCE";
+        door.style.left = `calc(${(doorIndex + 1) * 12.5}% - 8px)`;
+        rowElement.appendChild(door);
+      }
+
       function createMap(floor) {
         const map = document.createElement("div");
         map.className = "map-area";
@@ -1152,6 +1186,12 @@
         bottom.forEach((lot) =>
           bottomLots.appendChild(createLot(lot, floor.id)),
         );
+
+        if (floor.id === "lg") {
+          insertDoorBetweenDisabled(topLots, top);
+          insertDoorBetweenDisabled(bottomLots, bottom);
+          map.classList.add("lower-ground");
+        }
 
         map.appendChild(topLots);
         map.appendChild(bottomLots);
@@ -1212,7 +1252,7 @@
           <div class="status-box">
             <strong>Floor available lots:</strong> ${countAvailableLots(floor)}<br />
             <strong>Total available lots:</strong> ${countTotalAvailable()}<br />
-            <strong>Camera entering count:</strong> ${Number(document.getElementById("enteringCars").value) || 0}<br />
+            <strong>Camera entering count:</strong> ${Number(document.getElementById("enteringCars")?.value) || 0}<br />
             <strong>Estimated next availability:</strong> ${estimateAvailableTimeMinutes()} min
           </div>
         `;
@@ -1226,12 +1266,10 @@
         });
       }
 
-      document
-        .getElementById("enteringCars")
-        .addEventListener("input", renderFloors);
-      document
-        .getElementById("avgDuration")
-        .addEventListener("input", renderFloors);
+      const enteringCarsInput = document.getElementById("enteringCars");
+      const avgDurationInput = document.getElementById("avgDuration");
+      if (enteringCarsInput) enteringCarsInput.addEventListener("input", renderFloors);
+      if (avgDurationInput) avgDurationInput.addEventListener("input", renderFloors);
 
       renderFloors();
     </script>
