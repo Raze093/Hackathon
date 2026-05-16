@@ -81,16 +81,22 @@
         margin-top: 4px;
       }
 
-      .login-page {
+      .screen.login-page {
+        display: none;
+      }
+
+      .screen.login-page.active {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 65px;
+        min-height: calc(100vh - 4px);
+        padding: 0 20px;
       }
 
       .login-box {
         width: 330px;
         text-align: center;
+        margin: 0 auto;
       }
 
       .form-control {
@@ -156,7 +162,11 @@
         font-size: 10px;
       }
 
-      .signup-page {
+      .screen.signup-page {
+        display: none;
+      }
+
+      .screen.signup-page.active {
         display: grid;
         grid-template-columns: 38% 62%;
         min-height: calc(100vh - 4px);
@@ -227,6 +237,7 @@
       .signup-input,
       .signup-select,
       .gender-box {
+        width: 100%;
         background: #e9e9e9;
         border: none;
         height: 48px;
@@ -706,9 +717,6 @@
             /></label>
             <label class="gender-box"
               >Male <input type="radio" name="gender" value="Male"
-            /></label>
-            <label class="gender-box"
-              >Custom <input type="radio" name="gender" value="Custom"
             /></label>
           </div>
 
@@ -1224,10 +1232,6 @@
       document
         .getElementById("avgDuration")
         .addEventListener("input", renderFloors);
-
-      if (localStorage.getItem("currentUser")) {
-        showScreen("parkingScreen");
-      }
 
       renderFloors();
     </script>
