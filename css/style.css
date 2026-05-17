@@ -12,14 +12,14 @@
       button,input,select { font-family:inherit; }
       .top-line { height:4px; background:#7c37ff; width:100%; }
 
-      /* BRAND */
+      /* Brand */
       .brand { text-align:center; margin-bottom:24px; }
       .brand .welcome { color:var(--orange); font-size:22px; font-weight:bold; margin-bottom:-5px; }
       .logo-text { font-family:Georgia,serif; font-style:italic; color:#888; font-size:52px; line-height:0.9; }
       .logo-text .mall { color:var(--orange); }
       .tagline { font-size:10px; letter-spacing:3px; color:#888; font-style:italic; margin-top:4px; }
 
-      /* LOGIN */
+      /* Login */
       .login-page { display:flex; justify-content:center; align-items:center; min-height:calc(100vh - 4px); padding:0 20px; }
       .login-box { width:330px; text-align:center; margin:0 auto; }
       .form-control { width:220px; height:38px; padding:0 10px; border:1.8px solid var(--orange); border-radius:9px; margin:5px auto; display:block; outline:none; color:#111; }
@@ -31,7 +31,7 @@
       .switch-text { margin-top:9px; font-size:10px; color:#777; }
       .switch-text button { color:var(--orange); border:none; background:none; text-decoration:underline; cursor:pointer; padding:0; font-size:10px; }
 
-      /* SIGNUP */
+      /* Signup */
       .signup-page { display:grid; grid-template-columns:38% 62%; min-height:calc(100vh - 4px); }
       .signup-left { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; }
       .signup-left .brand { margin-bottom:28px; }
