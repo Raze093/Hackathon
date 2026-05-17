@@ -387,6 +387,10 @@ function formatYesNo(value) {
   return Number(value) === 1 ? "Yes" : "No";
 }
 
+window.addEventListener("parkingSimulationReset", () => {
+  selectedSpot = null;
+});
+
 function mountMapView(container) {
   container.className = "app-view parking-page";
   container.innerHTML = `
@@ -396,6 +400,9 @@ function mountMapView(container) {
     </div>
     <div class="parking-title-row">
       <div class="parking-title">Parking Availability</div>
+      <button type="button" id="simulationResetBtn" class="simulation-reset-btn">
+        Reset simulation
+      </button>
     </div>
     <div id="floorList" class="floor-list"></div>
   `;
@@ -403,4 +410,6 @@ function mountMapView(container) {
   floors = ParkingSimulation.getFloors();
   selectedSpot = null;
   renderFloors();
+  bindSimulationResetButton();
 }
+

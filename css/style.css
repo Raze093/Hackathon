@@ -112,6 +112,13 @@
       .parking-title-row { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; }
       .parking-title { color:var(--orange); font-size:30px; font-weight:bold; margin:8px 0 18px; }
       .logout-btn { background:white; border:1px solid #111; border-radius:6px; padding:7px 12px; cursor:pointer; margin-bottom:20px; }
+      .simulation-reset-btn {
+        flex-shrink:0; background:white; border:1.5px solid #111; border-radius:6px;
+        padding:7px 12px; cursor:pointer; margin-bottom:20px;
+        font-family:Arial,sans-serif; font-size:13px; font-weight:bold;
+      }
+      .simulation-reset-btn:hover:not(:disabled) { filter:brightness(0.97); }
+      .simulation-reset-btn:disabled { opacity:0.6; cursor:wait; }
       .floor-list { max-width:900px; margin:0 auto; }
 
       /* FLOOR ROW */
@@ -274,6 +281,12 @@
       /* DASHBOARD */
       .dashboard-page { padding:28px 5% 48px; max-width:960px; }
       .dashboard-header { margin-bottom:28px; }
+      .dashboard-header-top {
+        display:flex; justify-content:space-between; align-items:flex-start;
+        gap:16px; flex-wrap:wrap;
+      }
+      .dashboard-header-top .dashboard-title { margin-bottom:0; }
+      .dashboard-header-top .simulation-reset-btn { margin-bottom:0; }
       .dashboard-title {
         color:var(--orange); font-size:32px; font-weight:bold; margin:0 0 6px;
       }

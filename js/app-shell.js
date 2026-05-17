@@ -9,6 +9,23 @@ function initAppShell() {
   initSidebarToggle();
 }
 
+function bindSimulationResetButton() {
+  const button = document.getElementById("simulationResetBtn");
+  if (!button || button.dataset.bound === "true") {
+    return;
+  }
+
+  button.dataset.bound = "true";
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    try {
+      await ParkingSimulation.reset();
+    } finally {
+      button.disabled = false;
+    }
+  });
+}
+
 function setActiveNavPage(activePage) {
   document.querySelectorAll(".sidebar-nav-link").forEach((link) => {
     const page = link.dataset.page;

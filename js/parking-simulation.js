@@ -429,6 +429,39 @@ const ParkingSimulation = (function () {
     notify();
   }
 
+  async function reset() {
+    csvIndex = 0;
+    sessionTicksApplied = 0;
+    occupiedUntilTick = {};
+    floors = JSON.parse(JSON.stringify(defaultFloors));
+
+    localStorage.removeItem("parkingCsvIndex");
+    localStorage.removeItem("parkingOccupiedUntil");
+    localStorage.setItem("parkingFloors", JSON.stringify(floors));
+
+    if (csvTimeline.length === 0) {
+      await start();
+      return;
+    }
+
+    window.dispatchEvent(new CustomEvent("parkingSimulationReset"));
+
+    try {
+      const response = await fetch(CSV_DATA_PATH, { cache: "no-store" });
+
+      if (response.ok) {
+        const csvText = await response.text();
+        const rows = parseCsv(csvText);
+        csvTimeline = groupRowsByTimestamp(rows);
+        latestLiveInfo.rowsLoaded = rows.length;
+      }
+    } catch (error) {
+      console.warn("Could not re-read CSV on reset; using cached timeline.", error);
+    }
+
+    applyCsvTick();
+  }
+
   function setOccupiedUntil(lotId, tick) {
     if (tick === null) {
       delete occupiedUntilTick[lotId];
@@ -456,6 +489,7 @@ const ParkingSimulation = (function () {
   return {
     subscribe,
     start,
+    reset,
     getFloors,
     getLatestRowsBySpot,
     reloadFloors,

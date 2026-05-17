@@ -4,7 +4,12 @@ function mountDashboardView(container) {
   container.className = "app-view dashboard-page";
   container.innerHTML = `
     <header class="dashboard-header">
-      <h1 class="dashboard-title">Dashboard</h1>
+      <div class="dashboard-header-top">
+        <h1 class="dashboard-title">Dashboard</h1>
+        <button type="button" id="simulationResetBtn" class="simulation-reset-btn">
+          Reset simulation
+        </button>
+      </div>
       <p class="dashboard-subtitle">
         Live overview · <span id="dashboardTimestamp">Loading…</span>
       </p>
@@ -34,6 +39,8 @@ function mountDashboardView(container) {
       <div id="floorAvailabilityGrid" class="floor-availability-grid"></div>
     </section>
   `;
+
+  bindSimulationResetButton();
 }
 
 function renderDashboard(snapshot) {
